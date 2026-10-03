@@ -9,24 +9,42 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f4f7fb;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: #1f2937;
+      min-height: 100vh;
+      padding: 20px;
     }
     .container {
       max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
+      margin: 0 auto;
+      padding: 20px 0 40px;
+    }
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 28px;
+    }
+    .header h1 {
+      margin: 0 0 10px;
+      font-size: 2.4rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .header p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 1.05rem;
     }
     .tabs {
       display: flex;
       gap: 12px;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
+      justify-content: center;
       flex-wrap: wrap;
     }
     .tab {
-      background: #dfeaf9;
-      color: #123b73;
-      border: none;
+      background: rgba(255,255,255,0.18);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.25);
       padding: 12px 22px;
       border-radius: 10px 10px 0 0;
       font-size: 16px;
@@ -35,13 +53,14 @@
       transition: all 0.2s ease;
     }
     .tab.active {
-      background: #123b73;
-      color: white;
+      background: white;
+      color: #123b73;
+      border-color: white;
     }
     .panel {
       background: white;
       border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
       padding: 24px;
       display: none;
     }
@@ -101,6 +120,11 @@
 </head>
 <body>
   <div class="container">
+    <div class="header">
+      <h1>🚌 My Bus Alerts</h1>
+      <p>App Ads Configuration</p>
+    </div>
+
     <div class="tabs">
       <button class="tab active" data-target="ads">app-ads.txt</button>
       <button class="tab" data-target="privacy">Privacy Policy</button>
