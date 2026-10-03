@@ -129,6 +129,20 @@
     .download-link:hover {
       text-decoration: underline;
     }
+    .privacy-link {
+      display: inline-block;
+      margin-top: 18px;
+      color: #fff;
+      background: rgba(255,255,255,0.15);
+      padding: 10px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      backdrop-filter: blur(4px);
+    }
+    .privacy-link:hover {
+      background: rgba(255,255,255,0.25);
+    }
     .footer {
       text-align: center;
       color: white;
@@ -143,6 +157,7 @@
     <div class="header">
       <h1>🚌 My Bus Alerts</h1>
       <p>App Ads Configuration</p>
+      <a class="privacy-link" href="/privacy.html">Privacy Policy</a>
     </div>
 
     <div class="card">
@@ -186,7 +201,6 @@
   </div>
 
   <script>
-    // Fetch and display app-ads.txt content
     fetch('/app-ads.txt')
       .then(response => response.text())
       .then(data => {
