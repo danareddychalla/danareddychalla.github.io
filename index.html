@@ -3,219 +3,156 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Bus Alerts - App Ads Configuration</title>
+  <title>My Bus Alerts</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 20px;
-      color: #333;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
     }
     .container {
       max-width: 900px;
-      margin: 0 auto;
+      margin: 40px auto;
+      padding: 20px;
     }
-    .header {
-      text-align: center;
+    .tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .tab {
+      background: #dfeaf9;
+      color: #123b73;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 10px 10px 0 0;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab.active {
+      background: #123b73;
       color: white;
-      margin-bottom: 40px;
     }
-    .header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-    .header p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-    .card {
+    .panel {
       background: white;
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      overflow: hidden;
-      margin-bottom: 30px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      padding: 24px;
+      display: none;
     }
-    .card-header {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 25px;
+    .panel.active {
+      display: block;
     }
-    .card-header h2 {
-      font-size: 1.5rem;
-      margin-bottom: 5px;
-    }
-    .card-header p {
-      opacity: 0.9;
-      font-size: 0.95rem;
-    }
-    .card-body {
-      padding: 25px;
-    }
-    .code-block {
-      background: #f5f5f5;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 20px;
-      font-family: 'Courier New', monospace;
-      font-size: 1rem;
+    .code-box {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 18px;
+      border-radius: 10px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: monospace;
+      font-size: 14px;
       line-height: 1.6;
       overflow-x: auto;
-      color: #333;
-      white-space: pre-wrap;
-      word-wrap: break-word;
     }
-    .copy-btn {
-      display: inline-block;
-      background: #667eea;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.95rem;
-      margin-top: 15px;
-      transition: background 0.3s ease;
-    }
-    .copy-btn:hover {
-      background: #764ba2;
-    }
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .info-box {
-      background: #f9f9f9;
-      border-left: 4px solid #667eea;
-      padding: 15px;
-      border-radius: 4px;
-    }
-    .info-box h3 {
-      color: #667eea;
-      font-size: 0.95rem;
-      margin-bottom: 8px;
-    }
-    .info-box p {
-      font-size: 0.9rem;
-      color: #666;
-      word-break: break-all;
-    }
-    .download-section {
-      margin-top: 20px;
-      padding: 15px;
-      background: #e8f4f8;
-      border-radius: 6px;
-      border-left: 4px solid #1a9bcf;
-    }
-    .download-section h3 {
-      color: #1a9bcf;
-      margin-bottom: 10px;
-    }
-    .download-link {
-      display: inline-block;
-      color: #1a9bcf;
-      text-decoration: none;
-      font-weight: bold;
-      margin-right: 15px;
-    }
-    .download-link:hover {
-      text-decoration: underline;
-    }
-    .privacy-link {
-      display: inline-block;
+    .button-row {
       margin-top: 18px;
-      color: #fff;
-      background: rgba(255,255,255,0.15);
-      padding: 10px 18px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 600;
-      backdrop-filter: blur(4px);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
     }
-    .privacy-link:hover {
-      background: rgba(255,255,255,0.25);
-    }
-    .footer {
-      text-align: center;
+    .btn {
+      background: #123b73;
       color: white;
-      margin-top: 30px;
-      padding: 20px;
-      opacity: 0.8;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn.secondary {
+      background: #e5edf8;
+      color: #123b73;
+    }
+    .privacy-content {
+      line-height: 1.7;
+      color: #333;
+    }
+    .privacy-content h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+    .privacy-content p, .privacy-content ul {
+      margin-bottom: 16px;
+    }
+    .privacy-content ul {
+      padding-left: 20px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <h1>🚌 My Bus Alerts</h1>
-      <p>App Ads Configuration</p>
-      <a class="privacy-link" href="/privacy.html">Privacy Policy</a>
+    <div class="tabs">
+      <button class="tab active" data-target="ads">app-ads.txt</button>
+      <button class="tab" data-target="privacy">Privacy Policy</button>
     </div>
 
-    <div class="card">
-      <div class="card-header">
-        <h2>app-ads.txt Configuration</h2>
-        <p>Authorized sellers of ad inventory for My Bus Alerts Android App</p>
-      </div>
-      <div class="card-body">
-        <div class="code-block" id="adsContent">Loading app-ads.txt...</div>
-        <button class="copy-btn" onclick="copyToClipboard()">📋 Copy to Clipboard</button>
-        
-        <div class="info-grid">
-          <div class="info-box">
-            <h3>📄 File Name</h3>
-            <p>app-ads.txt</p>
-          </div>
-          <div class="info-box">
-            <h3>🔗 Direct URL</h3>
-            <p><a href="/app-ads.txt" class="download-link">danareddychalla.github.io/app-ads.txt</a></p>
-          </div>
-          <div class="info-box">
-            <h3>📍 Location</h3>
-            <p>Repository Root</p>
-          </div>
-        </div>
-
-        <div class="download-section">
-          <h3>📥 Download & Usage</h3>
-          <p>
-            <a href="/app-ads.txt" class="download-link">↓ Download app-ads.txt</a>
-            <br><br>
-            <strong>For Ad Networks:</strong> Place this file on your app's server or in your app manifest for verification.
-          </p>
-        </div>
+    <div id="ads" class="panel active">
+      <h2>app-ads.txt</h2>
+      <div id="adsContent" class="code-box">Loading...</div>
+      <div class="button-row">
+        <button class="btn" onclick="copyAdsText()">Copy</button>
+        <a class="btn secondary" href="/app-ads.txt" target="_blank">Open File</a>
       </div>
     </div>
 
-    <div class="footer">
-      <p>✨ GitHub Pages hosted by danareddychalla</p>
+    <div id="privacy" class="panel privacy-content">
+      <h2>Privacy Policy</h2>
+      <p>This privacy policy applies to the MyBus Alerts app for mobile devices, together with any related services operated by Dana.</p>
+      <p>The Application collects information when you download and use it. This may include your device IP address, pages visited in the app, time spent, and device operating system.</p>
+      <p>Third-party services like Google Play Services and AdMob may collect limited data for analytics and ads, subject to their own privacy policies.</p>
+      <p>You may request access to, correction, or deletion of your personal data by contacting dream.myapps@gmail.com.</p>
+      <p>We retain data only as needed for service delivery, legal compliance, and analytics, and we do not knowingly collect data from children under the required age.</p>
+      <p>To contact us, email: dream.myapps@gmail.com</p>
+      <p><a href="/privacy.html" target="_blank">View full privacy policy</a></p>
     </div>
   </div>
 
   <script>
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.toggle('active', t === tab));
+        panels.forEach(p => p.classList.toggle('active', p.id === tab.dataset.target));
+      });
+    });
+
     fetch('/app-ads.txt')
       .then(response => response.text())
       .then(data => {
         document.getElementById('adsContent').textContent = data;
       })
-      .catch(error => {
-        document.getElementById('adsContent').textContent = 'Error loading app-ads.txt: ' + error.message;
+      .catch(() => {
+        document.getElementById('adsContent').textContent = 'Error loading app-ads.txt';
       });
 
-    function copyToClipboard() {
-      const content = document.getElementById('adsContent').textContent;
-      navigator.clipboard.writeText(content).then(() => {
-        alert('✅ Copied to clipboard!');
-      }).catch(err => {
-        alert('❌ Failed to copy: ' + err);
+    function copyAdsText() {
+      const text = document.getElementById('adsContent').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Copied');
+      }).catch(() => {
+        alert('Copy failed');
       });
     }
   </script>
